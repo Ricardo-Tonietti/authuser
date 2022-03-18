@@ -15,6 +15,9 @@
 	<description>Projeto DECODER - MS authuser</description>
 	<properties>
 		<java.version>11</java.version>
+
+		<sonar.organization>ricardo-tonietti</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
