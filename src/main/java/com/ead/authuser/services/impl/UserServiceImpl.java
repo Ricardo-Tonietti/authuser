@@ -19,31 +19,31 @@ public class UserServiceImpl implements UserServices {
     @Override
     public List<UserModel> findAll() {
 
-        return userRepository.findAll();
+        return this.userRepository.findAll();
     }
 
     @Override
-    public Optional<UserModel> findById(UUID userId) {
-        return userRepository.findById(userId);
+    public Optional<UserModel> findById(final UUID userId) {
+        return this.userRepository.findById(userId);
     }
 
     @Override
-    public void delete(UserModel userModel) {
-        userRepository.delete(userModel);
+    public void delete(final UserModel userModel) {
+        this.userRepository.delete(userModel);
     }
 
     @Override
-    public void save(UserModel userModel) {
-        userRepository.save(userModel);
+    public void save(final UserModel userModel) {
+        this.userRepository.save(userModel);
     }
 
     @Override
-    public boolean existsByUsername(String userName) {
-        return userRepository.existsByUsername(userName);
+    public boolean existsByUsername(final String userName) {
+        return this.userRepository.existsByUsername(userName);
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
+    public boolean existsByEmail(final String email) {
+        return this.userRepository.existsByEmail(email);
     }
 }

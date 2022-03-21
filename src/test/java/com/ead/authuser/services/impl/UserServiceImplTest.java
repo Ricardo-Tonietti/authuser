@@ -33,13 +33,13 @@ public class UserServiceImplTest {
 
     @Before
     public void setUp() throws Exception{
-        BDDMockito.given(this.userRepository.findById(UUID.fromString(userId)))
+        BDDMockito.given(userRepository.findById(UUID.fromString(this.userId)))
                 .willReturn(Optional.of(new UserModel()));
     }
 
     @Test
     public void testFindById() {
-        Optional<UserModel> usuer = this.userService.findById(UUID.fromString(userId));
+        final Optional<UserModel> usuer = userService.findById(UUID.fromString(this.userId));
         assertTrue(usuer.isPresent());
     }
 

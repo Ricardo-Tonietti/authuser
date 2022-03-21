@@ -5,6 +5,7 @@ import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserServices;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,29 +17,31 @@ import java.time.ZoneId;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping(value = "/auth")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
     UserServices userServices;
 
     @PostMapping("/signup")
-    public ResponseEntity<Object> registerUser (@RequestBody UserDto userDto){
-        if(userServices.existsByUsername(userDto.getUsername())){
+    public ResponseEntity<Object> registerUser (@RequestBody
+                                                    @JsonView (UserDto.UserView.RegistrationPost.class) final UserDto userDto){
+
+        if(this.userServices.existsByUsername(userDto.getUsername())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR: username is Already Taken!");
         }
 
-        if(userServices.existsByEmail(userDto.getEmail())){
+        if(this.userServices.existsByEmail(userDto.getEmail())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR: Email is Already Taken!");
         }
 
-        var userModel = new UserModel();
+        final var userModel = new UserModel();
         BeanUtils.copyProperties(userDto, userModel);
         userModel.setUserStatus(UserStatus.ACTIVE);
         userModel.setUserType(UserType.STUDENT);
         userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
         userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
-        userServices.save(userModel);
+        this.userServices.save(userModel);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userModel);
     }
