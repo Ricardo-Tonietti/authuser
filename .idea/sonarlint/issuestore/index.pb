@@ -11,8 +11,6 @@ s
 Csrc/test/java/com/ead/authuser/repositories/UserRepositoryTest.java,4/a/4a37e588188872683cfa6ae64f062a3632591143
 r
 Bsrc/test/java/com/ead/authuser/controllers/UserControllerTest.java,6/8/68c826e564760dd254960d2883711570592d3cc7
-d
-4src/main/java/com/ead/authuser/models/UserModel.java,9/a/9a88fb3558e436664bd01145b811564ddf26664f
 |
 Lsrc/test/java/com/ead/authuser/controllers/AuthenticationControllerTest.java,5/a/5a01e7a36fcbf0f4a81aab48994e61fde89ffc3c
 g
