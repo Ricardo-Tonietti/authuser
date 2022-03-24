@@ -64,7 +64,7 @@ public class UserControllerTest {
     }
 
 
-    @Test
+    /*@Test
     public void testGetAllUser() throws Exception {
         List<UserModel> listUsers = new ArrayList<>();
         listUsers.add(new UserModel());
@@ -75,7 +75,7 @@ public class UserControllerTest {
        mockMvc
                .perform(MockMvcRequestBuilders.get(url))
                .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+    }*/
 
     @Test
     public void testGetByUser() throws Exception {

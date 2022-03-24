@@ -33,13 +33,13 @@ public class UserController {
     UserServices userServices;
 
     @GetMapping
-    public ResponseEntity<Page<UserModel>> getAllUsers( SpecificationTemplate.UserSpec spec,
-                                            @PageableDefault(page = 0, size = 5,
-            sort = "userId", direction = Sort.Direction.ASC)Pageable pageable){
+    public ResponseEntity<Page<UserModel>> getAllUsers(SpecificationTemplate.UserSpec spec,
+                                                       @PageableDefault(page = 0, size = 5,
+                                                               sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
 
         Page<UserModel> userModelPage = userServices.findAll(spec, pageable);
-        if(!userModelPage.isEmpty()){
-            for(UserModel user: userModelPage.toList()){
+        if (!userModelPage.isEmpty()) {
+            for (UserModel user : userModelPage.toList()) {
                 user.add(linkTo(methodOn(UserController.class).getOneUser(user.getUserId())).withSelfRel());
             }
         }
@@ -47,39 +47,39 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Object> getOneUser (@PathVariable("userId") UUID userId){
-        final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
+    public ResponseEntity<Object> getOneUser(@PathVariable("userId") UUID userId) {
+        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
-        if(!userModelOptional.isPresent()){
+        if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
-        }else {
+        } else {
             return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
         }
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Object> deleteUserId (@PathVariable("userId") final UUID userId){
-        final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
+    public ResponseEntity<Object> deleteUserId(@PathVariable("userId") final UUID userId) {
+        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
-        if(!userModelOptional.isPresent()){
+        if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
-        }else {
+        } else {
             this.userServices.delete(userModelOptional.get());
             return ResponseEntity.status(HttpStatus.OK).body("User deleted success");
         }
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<Object> updateUser (@PathVariable("userId") final UUID userId,
-                                              @RequestBody @Validated(UserDto.UserView.UserPut.class)
-                                              @JsonView(UserDto.UserView.UserPut.class) final UserDto userDto){
+    public ResponseEntity<Object> updateUser(@PathVariable("userId") final UUID userId,
+                                             @RequestBody @Validated(UserDto.UserView.UserPut.class)
+                                             @JsonView(UserDto.UserView.UserPut.class) final UserDto userDto) {
 
         final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
-        if(!userModelOptional.isPresent()){
+        if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
-        }else {
-            final var userModel = userModelOptional.get();
+        } else {
+            var userModel = userModelOptional.get();
             userModel.setFullName(userDto.getFullName());
             userModel.setPhoneNumber(userDto.getPhoneNumber());
             userModel.setCpf(userDto.getCpf());
@@ -91,19 +91,18 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/password")
-    public ResponseEntity<Object> updatePassword (@PathVariable("userId") final UUID userId,
-                                                  @RequestBody @Validated(UserDto.UserView.PasswordPut.class)
-                                                  @JsonView(UserDto.UserView.PasswordPut.class) final UserDto userDto){
+    public ResponseEntity<Object> updatePassword(@PathVariable("userId") final UUID userId,
+                                                 @RequestBody @Validated(UserDto.UserView.PasswordPut.class)
+                                                 @JsonView(UserDto.UserView.PasswordPut.class) final UserDto userDto) {
 
-        final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
+        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
-        if(!userModelOptional.isPresent()){
+        if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
-        } else if(!userModelOptional.get().getPassword().equals(userDto.getOldPassword())){
+        } else if (!userModelOptional.get().getPassword().equals(userDto.getOldPassword())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: Mismatched old password!");
-        }
-        else {
-            final var userModel = userModelOptional.get();
+        } else {
+            var userModel = userModelOptional.get();
             userModel.setPassword(userDto.getPassword());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
 
@@ -113,16 +112,16 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/image")
-    public ResponseEntity<Object> updateImage (@PathVariable("userId") final UUID userId,
-                                               @RequestBody @Validated(UserDto.UserView.ImagePut.class)
-                                               @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto){
+    public ResponseEntity<Object> updateImage(@PathVariable("userId") final UUID userId,
+                                              @RequestBody @Validated(UserDto.UserView.ImagePut.class)
+                                              @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
 
-        final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
+        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
-        if(!userModelOptional.isPresent()) {
+        if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
-        }else {
-            final var userModel = userModelOptional.get();
+        } else {
+            var userModel = userModelOptional.get();
             userModel.setImageUrl(userDto.getImageUrl());
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
 
