@@ -5,6 +5,7 @@ import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserServices;
 import com.ead.authuser.specifications.SpecificationTemplate;
 import com.fasterxml.jackson.annotation.JsonView;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +24,7 @@ import java.util.UUID;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Log4j2
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/users")
@@ -59,12 +61,15 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Object> deleteUserId(@PathVariable("userId") final UUID userId) {
-        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
+        log.debug("DELETE deleteUser userId received {} ", userId);
 
+        Optional<UserModel> userModelOptional = this.userServices.findById(userId);
         if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(UserController.userNotFound);
         } else {
             this.userServices.delete(userModelOptional.get());
+            log.debug("DELETE deleteUser userId deleted {} ", userId);
+            log.info("User deleted successfully userId {} ", userId);
             return ResponseEntity.status(HttpStatus.OK).body("User deleted success");
         }
     }
@@ -74,6 +79,7 @@ public class UserController {
                                              @RequestBody @Validated(UserDto.UserView.UserPut.class)
                                              @JsonView(UserDto.UserView.UserPut.class) final UserDto userDto) {
 
+        log.debug("PUT updateUser userDto received {} ", userDto.toString());
         final Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
         if (!userModelOptional.isPresent()) {
@@ -86,6 +92,8 @@ public class UserController {
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
 
             this.userServices.save(userModel);
+            log.debug("PUT updateUser userDto saved {} ", userModel.getUsername());
+            log.info("User saved sucessfully {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(userModel);
         }
     }
@@ -95,6 +103,7 @@ public class UserController {
                                                  @RequestBody @Validated(UserDto.UserView.PasswordPut.class)
                                                  @JsonView(UserDto.UserView.PasswordPut.class) final UserDto userDto) {
 
+        log.debug("PUT updatePassword userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
         if (!userModelOptional.isPresent()) {
@@ -107,6 +116,8 @@ public class UserController {
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
 
             this.userServices.save(userModel);
+            log.debug("PUT updatePassword userModel saved {} ", userModel.toString());
+            log.info("Password updated successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body("Password updates successfully");
         }
     }
@@ -116,6 +127,7 @@ public class UserController {
                                               @RequestBody @Validated(UserDto.UserView.ImagePut.class)
                                               @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
 
+        log.debug("PUT updateImage userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = this.userServices.findById(userId);
 
         if (!userModelOptional.isPresent()) {
@@ -126,6 +138,8 @@ public class UserController {
             userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
 
             this.userServices.save(userModel);
+            log.debug("PUT updateImage userModel saved {} ", userModel.toString());
+            log.info("Image updated successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(userModel);
         }
     }
