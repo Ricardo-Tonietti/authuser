@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -17,6 +19,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "TB_USER")
@@ -57,5 +61,9 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<UserCourseModel> usersCourses;
+
+    public UserCourseModel convertToUserCourseModel(UUID courseId){
+        return new UserCourseModel(null,courseId,this);
+    }
 
 }

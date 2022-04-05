@@ -1,6 +1,4 @@
 
-`
-0src/main/java/com/ead/authuser/dtos/UserDto.java,8/2/8243cda05c392dc8bc5502925dccccda44092d6f
 l
 <src/test/java/com/ead/authuser/AuthuserApplicationTests.java,7/8/78e3ae730187acc5537fe8345b599d93b98eabf9
 g
@@ -15,17 +13,13 @@ Esrc/main/java/com/ead/authuser/validation/UsernameConstraintImpl.java,b/e/bee8
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 A
 system.properties,a/5/a5db35984da8ffa0e255c16a2e31ae7b26e7d222
-u
-Esrc/main/java/com/ead/authuser/repositories/UserCourseRepository.java,3/2/3274dad4edb26ef9848e3cbbd0535fefcd3b7bca
-n
->src/main/java/com/ead/authuser/services/UserCourseService.java,7/0/700481f3e9b75fb29284d14a6f5e29d753f5e013
-w
-Gsrc/main/java/com/ead/authuser/services/impl/UserCourseServiceImpl.java,d/d/dd6aabfa6e8ae493c31d420fc535bfc6985c042c
 x
 Hsrc/main/java/com/ead/authuser/controllers/AuthenticationController.java,c/4/c41e4991ef4063db50e1cb6dd6028d5629a32eab
-j
-:src/main/java/com/ead/authuser/models/UserCourseModel.java,f/2/f2d8af8221cb8a7a66c153953bb287242f0b04a7
-d
-4src/main/java/com/ead/authuser/models/UserModel.java,9/a/9a88fb3558e436664bd01145b811564ddf26664f
 x
 Hsrc/main/java/com/ead/authuser/specifications/SpecificationTemplate.java,5/c/5c7a64cc1aa3e3b11a5d851ddd154bf48f812865
+e
+5src/main/java/com/ead/authuser/enums/CourseLevel.java,6/0/60e9798e43e65ac6871f7b0a60db5564448ad46a
+f
+6src/main/java/com/ead/authuser/enums/CourseStatus.java,d/f/df78215efd9c7283ef3313ac49bcc490f6ca99b3
+b
+2src/main/java/com/ead/authuser/dtos/CourseDto.java,5/c/5c5b78fafe13e4dae316f251f664585efcf8dcb4
