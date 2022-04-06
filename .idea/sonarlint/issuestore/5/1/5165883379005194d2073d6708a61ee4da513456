@@ -1,0 +1,6 @@
+
+h
+java:S2259+"FA "NullPointerException" could be thrown; "getBody()" can return null.(¾†ÌÑùÿÿÿÿ8¸§ô¥ÿ/
+a
+java:S22591"DA "NullPointerException" could be thrown; "result" is nullable here.(“ñ÷™8óêû¢ÿ/
+y	java:S116 "]Rename this field "REQUEST_URL_COURSE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( â€Þ8«…ÓÖÿ/

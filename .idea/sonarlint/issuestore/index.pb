@@ -23,3 +23,13 @@ f
 6src/main/java/com/ead/authuser/enums/CourseStatus.java,d/f/df78215efd9c7283ef3313ac49bcc490f6ca99b3
 b
 2src/main/java/com/ead/authuser/dtos/CourseDto.java,5/c/5c5b78fafe13e4dae316f251f664585efcf8dcb4
+n
+>src/main/java/com/ead/authuser/configs/RestTemplateConfig.java,c/1/c1d1a080abc2f0673922dd79b6a171f46b4cd814
+`
+0src/main/java/com/ead/authuser/dtos/UserDto.java,8/2/8243cda05c392dc8bc5502925dccccda44092d6f
+i
+9src/main/java/com/ead/authuser/services/UtilsService.java,8/3/83b770b32bd9508da270bcda6182e85fd22a1142
+h
+8src/main/java/com/ead/authuser/dtos/ResponsePageDto.java,c/b/cb0ec477853f1c2169b89512695610f259dd91ab
+h
+8src/main/java/com/ead/authuser/clients/CourseClient.java,5/1/5165883379005194d2073d6708a61ee4da513456
