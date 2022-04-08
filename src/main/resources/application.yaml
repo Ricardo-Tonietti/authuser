@@ -1,6 +1,6 @@
 server:
   port: 8087
-  servelet:
+  servlet:
     context-path: '/ead-authuser/'
 
 spring:
@@ -33,7 +33,7 @@ logging:
 ead:
   api:
     url:
-      course: 'http://ead-course-service'
+      course: 'http://ead-course-service/ead-course/'
 
 eureka:
   client:
