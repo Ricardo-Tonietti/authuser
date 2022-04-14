@@ -1,5 +1,0 @@
-com/ead/authuser/AuthuserApplicationTests.class
-com/ead/authuser/repositories/UserRepositoryTest.class
-com/ead/authuser/controllers/AuthenticationControllerTest.class
-com/ead/authuser/services/impl/UserServiceImplTest.class
-com/ead/authuser/controllers/UserControllerTest.class

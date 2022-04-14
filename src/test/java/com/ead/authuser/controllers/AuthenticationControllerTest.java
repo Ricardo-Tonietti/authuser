@@ -25,7 +25,7 @@ class AuthenticationControllerTest {
                         "            \"fullName\": \" Tonietti\",\n" +
                         "            \"cpf\": \"15697981848\" }")
                 .when()
-                    .post("http://localhost:" + port + "/auth/signup")
+                    .post("http://localhost:" + this.port + "/auth/signup")
                 .then()
                     .statusCode(201);
     }

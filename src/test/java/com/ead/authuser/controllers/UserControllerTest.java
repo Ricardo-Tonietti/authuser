@@ -38,11 +38,11 @@ public class UserControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception{
-        final UserModel userModel = this.userRepository.save(this.obterDadosUser());
+        UserModel userModel = userRepository.save(obterDadosUser());
     }
 
     public UserModel obterDadosUser(){
-        final UserModel userModel = new UserModel();
+        UserModel userModel = new UserModel();
         userModel.setUserId(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e"));
         userModel.setUsername("MockTest1");
         userModel.setEmail("email@email.com");
@@ -60,7 +60,7 @@ public class UserControllerTest {
 
     @After
     public final void tearDown(){
-        this.userRepository.deleteAll();
+        userRepository.deleteAll();
     }
 
 
@@ -79,14 +79,14 @@ public class UserControllerTest {
 
     @Test
     public void testGetByUser() throws Exception {
-        List<UserModel> listUsers = new ArrayList<>();
+        final List<UserModel> listUsers = new ArrayList<>();
         listUsers.add(new UserModel());
 
-        Mockito.when(userServices.findById(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e")))
+        Mockito.when(this.userServices.findById(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e")))
                 .thenReturn(Optional.ofNullable(listUsers.get(0)));
 
-        String url = "/users/{userId}";
-        mockMvc
+        final String url = "/users/{userId}";
+        this.mockMvc
                 .perform(MockMvcRequestBuilders.get(url,"9bbf4622-3725-47fc-ae31-7405265ccd7e"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

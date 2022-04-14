@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.ead.authuser.controllers.UserControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.266 s <<< FAILURE! - in com.ead.authuser.controllers.UserControllerTest
-testGetByUser  Time elapsed: 0.002 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.context.ApplicationContextException: Failed to start bean 'documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
-Caused by: java.lang.NullPointerException
-
