@@ -1,6 +1,7 @@
 package com.ead.authuser.models;
 
 
+import com.ead.authuser.dtos.UserEventDto;
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -55,5 +57,13 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime lastUpdateDate;
+
+    public UserEventDto convertToUserEventDto(){
+        final var userEventDto = new UserEventDto();
+        BeanUtils.copyProperties(this,userEventDto);
+        userEventDto.setUserType(getUserType().toString());
+        userEventDto.setUserStatus(getUserStatus().toString());
+        return userEventDto;
+    }
 
 }

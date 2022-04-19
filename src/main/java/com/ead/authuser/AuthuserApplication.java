@@ -10,7 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @EnableEurekaClient
 public class AuthuserApplication {
 
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 		SpringApplication.run(AuthuserApplication.class, args);
 	}
 

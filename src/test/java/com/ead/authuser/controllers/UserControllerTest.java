@@ -4,7 +4,7 @@ import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.repositories.UserRepository;
-import com.ead.authuser.services.UserServices;
+import com.ead.authuser.services.UserService;
 import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,18 +31,18 @@ public class UserControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private UserServices userServices;
+    private UserService userService;
 
     @MockBean
     private UserRepository userRepository;
 
     @BeforeEach
     public void setUp() throws Exception{
-        UserModel userModel = userRepository.save(obterDadosUser());
+        final UserModel userModel = this.userRepository.save(this.obterDadosUser());
     }
 
     public UserModel obterDadosUser(){
-        UserModel userModel = new UserModel();
+        final UserModel userModel = new UserModel();
         userModel.setUserId(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e"));
         userModel.setUsername("MockTest1");
         userModel.setEmail("email@email.com");
@@ -60,7 +60,7 @@ public class UserControllerTest {
 
     @After
     public final void tearDown(){
-        userRepository.deleteAll();
+        this.userRepository.deleteAll();
     }
 
 
@@ -79,14 +79,14 @@ public class UserControllerTest {
 
     @Test
     public void testGetByUser() throws Exception {
-        final List<UserModel> listUsers = new ArrayList<>();
+        List<UserModel> listUsers = new ArrayList<>();
         listUsers.add(new UserModel());
 
-        Mockito.when(this.userServices.findById(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e")))
+        Mockito.when(userService.findById(UUID.fromString("9bbf4622-3725-47fc-ae31-7405265ccd7e")))
                 .thenReturn(Optional.ofNullable(listUsers.get(0)));
 
         final String url = "/users/{userId}";
-        this.mockMvc
+        mockMvc
                 .perform(MockMvcRequestBuilders.get(url,"9bbf4622-3725-47fc-ae31-7405265ccd7e"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

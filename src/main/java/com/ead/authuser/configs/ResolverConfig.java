@@ -12,10 +12,10 @@ import java.util.List;
 public class ResolverConfig extends WebMvcConfigurationSupport {
 
     @Override
-    public void addArgumentResolvers(final List<HandlerMethodArgumentResolver> argumentResolvers) {
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(new SpecificationArgumentResolver());
 
-        final PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
+        PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
         argumentResolvers.add(resolver);
         super.addArgumentResolvers(argumentResolvers);
     }

@@ -6,12 +6,12 @@ import javax.validation.ConstraintValidatorContext;
 public class UsernameConstraintImpl implements ConstraintValidator<UsernameContraint, String> {
 
     @Override
-    public void initialize(final UsernameContraint constraintAnnotation) {
+    public void initialize(UsernameContraint constraintAnnotation) {
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
-    public boolean isValid(final String username, final ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(String username, ConstraintValidatorContext constraintValidatorContext) {
 
         return username != null && !username.trim().isEmpty() && !username.contains(" ");
     }

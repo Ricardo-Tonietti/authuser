@@ -22,6 +22,8 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  rabbitmq:
+    addresses: amqps://vieccwab:oihhqDXJ59lYp9EYQaV8pNYba_48q46c@toad.rmq.cloudamqp.com/vieccwab
 
 logging:
   level:
@@ -33,7 +35,10 @@ logging:
 ead:
   api:
     url:
-      course: 'http://ead-course-service/ead-course/'
+      course: 'http://ead-course-service/ead-course'
+  broker:
+    exchange:
+      userEvent: ead.userevent
 
 eureka:
   client:

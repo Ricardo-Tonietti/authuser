@@ -12,25 +12,25 @@ import java.util.List;
 public class ResponsePageDto<T> extends PageImpl<T> {
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public ResponsePageDto(@JsonProperty("content") List<T> content,
-                           @JsonProperty("number") int number,
-                           @JsonProperty("size") int size,
-                           @JsonProperty("totalElements") Long totalElements,
-                           @JsonProperty("pageable") JsonNode pageable,
-                           @JsonProperty("last") boolean last,
-                           @JsonProperty("totalPages") int totalPages,
-                           @JsonProperty("sort") JsonNode sort,
-                           @JsonProperty("first") boolean first,
-                           @JsonProperty("empty") boolean empty){
+    public ResponsePageDto(@JsonProperty("content") final List<T> content,
+                           @JsonProperty("number") final int number,
+                           @JsonProperty("size") final int size,
+                           @JsonProperty("totalElements") final Long totalElements,
+                           @JsonProperty("pageable") final JsonNode pageable,
+                           @JsonProperty("last") final boolean last,
+                           @JsonProperty("totalPages") final int totalPages,
+                           @JsonProperty("sort") final JsonNode sort,
+                           @JsonProperty("first") final boolean first,
+                           @JsonProperty("empty") final boolean empty){
 
         super(content, PageRequest.of(number,size), totalElements);
     }
 
-    public ResponsePageDto(List<T> content, Pageable pageable, long total) {
+    public ResponsePageDto(final List<T> content, final Pageable pageable, final long total) {
         super(content, pageable, total);
     }
 
-    public ResponsePageDto(List<T> content) {
+    public ResponsePageDto(final List<T> content) {
         super(content);
     }
 }

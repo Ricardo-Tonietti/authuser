@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,27 +27,25 @@ public class CourseClient {
     RestTemplate restTemplate;
 
     @Autowired
-    private UtilsService utilsService;
+    UtilsService utilsService;
 
     @Value("${ead.api.url.course}")
-    String REQUEST_URL_COURSE ;
+    String REQUEST_URL_COURSE;
 
     public Page<CourseDto> getAllCoursesByUser(UUID userId, Pageable pageable){
         List<CourseDto> searchResult = null;
-        ResponseEntity<ResponsePageDto<CourseDto>> result = null;
-        String url =  REQUEST_URL_COURSE + utilsService.createUrl(userId, pageable);
+        String url = REQUEST_URL_COURSE + utilsService.createUrlGetAllCoursesByUser(userId, pageable);
         log.debug("Request URL: {} ", url);
         log.info("Request URL: {} ", url);
         try{
             ParameterizedTypeReference<ResponsePageDto<CourseDto>> responseType = new ParameterizedTypeReference<ResponsePageDto<CourseDto>>() {};
-            result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
+            ResponseEntity<ResponsePageDto<CourseDto>> result = restTemplate.exchange(url, HttpMethod.GET, null, responseType);
             searchResult = result.getBody().getContent();
             log.debug("Response Number of Elements: {} ", searchResult.size());
         } catch (HttpStatusCodeException e){
             log.error("Error request /courses {} ", e);
         }
         log.info("Ending request /courses userId {} ", userId);
-        return result.getBody();
+        return new PageImpl<>(searchResult);
     }
-
 }

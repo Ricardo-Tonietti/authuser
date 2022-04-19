@@ -33,13 +33,13 @@ public class UserRepositoryTest {
 
     @Before
     public void setUp() throws Exception{
-        UserModel userModel = userRepository.save(obterDadosUser());
+        final UserModel userModel = this.userRepository.save(this.obterDadosUser());
     }
 
     public UserModel obterDadosUser(){
-        UserModel userModel = new UserModel();
-        userModel.setUserId(UUID.fromString(userId));
-        userModel.setUsername(username);
+        final UserModel userModel = new UserModel();
+        userModel.setUserId(UUID.fromString(this.userId));
+        userModel.setUsername(this.username);
         userModel.setEmail("email@email.com");
         userModel.setPassword("123456");
         userModel.setCpf("12345679");
@@ -55,31 +55,31 @@ public class UserRepositoryTest {
 
     @After
     public final void tearDown(){
-        userRepository.deleteAll();
+        this.userRepository.deleteAll();
     }
 
     @Test
     public void testExistsByUsername() {
-        assertEquals(userRepository.existsByUsername("username"),true);
+        assertEquals(this.userRepository.existsByUsername("username"),true);
     }
 
     @Test
     public void testExistsByEmail() {
-        assertEquals(userRepository.existsByEmail("email@email.com"),true);
+        assertEquals(this.userRepository.existsByEmail("email@email.com"),true);
     }
 
     @Test
     public void testFindById(){
-        Optional<UserModel> userModelOptional = userRepository.findById(UUID.fromString(userId));
+        final Optional<UserModel> userModelOptional = this.userRepository.findById(UUID.fromString(this.userId));
 
         if(userModelOptional.isPresent()){
-            assertEquals(userModelOptional, userId);
+            assertEquals(userModelOptional, this.userId);
         }
     }
 
     @Test
     public void testNotFoundUser(){
-        Optional<UserModel> userModelOptional = userRepository.findById(UUID.randomUUID());
+        final Optional<UserModel> userModelOptional = this.userRepository.findById(UUID.randomUUID());
 
         if(!userModelOptional.isPresent()){
             assertNotNull(userModelOptional);
@@ -88,7 +88,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testListAllUser(){
-        List<UserModel> userModel = userRepository.findAll();
+        final List<UserModel> userModel = this.userRepository.findAll();
 
         assertTrue(String.valueOf(userModel.isEmpty()),true);
 
