@@ -1,6 +1,5 @@
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/dtos/CourseDto.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/enums/CourseStatus.java
-/home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/configs/swagger/SwaggerConfigurations.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/controllers/UserController.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/publishers/UserEventPublisher.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/specifications/SpecificationTemplate.java
@@ -9,6 +8,7 @@
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/services/impl/UtilsServiceImpl.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/dtos/UserDto.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/dtos/UserEventDto.java
+/home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/controllers/RefreshScopeController.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/enums/UserType.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/services/UserService.java
 /home/ricardo/treinamentos/decoder/authuser/src/main/java/com/ead/authuser/dtos/ResponsePageDto.java
