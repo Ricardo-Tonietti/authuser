@@ -1,9 +1,12 @@
 package com.ead.authuser.controllers;
 
 import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.enums.RoleType;
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
+import com.ead.authuser.models.RoleModel;
 import com.ead.authuser.models.UserModel;
+import com.ead.authuser.services.RoleService;
 import com.ead.authuser.services.UserService;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.extern.log4j.Log4j2;
@@ -11,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +29,12 @@ public class AuthenticationController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
     public ResponseEntity<Object> registerUser (@RequestBody
@@ -41,6 +51,10 @@ public class AuthenticationController {
             AuthenticationController.log.warn("POST :email {} is Already Taken ", userDto.getEmail());
             return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR: Email is Already Taken!");
         }
+        RoleModel roleModel = roleService.findByRoleName(RoleType.ROLE_STUDENT)
+                .orElseThrow( () -> new RuntimeException("ERROR: Role is Not Found."));
+
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         var userModel = new UserModel();
         BeanUtils.copyProperties(userDto, userModel);
@@ -48,6 +62,7 @@ public class AuthenticationController {
         userModel.setUserType(UserType.STUDENT);
         userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
         userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
+        userModel.getRoles().add(roleModel);
         userService.saveUser(userModel);
 
         AuthenticationController.log.debug("POST :registerUser UserId saved {} ", userModel.getUserId());
