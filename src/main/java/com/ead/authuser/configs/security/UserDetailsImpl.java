@@ -1,8 +1,7 @@
-package com.ead.authuser.clients.security;
+package com.ead.authuser.configs.security;
 
 import com.ead.authuser.models.UserModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.inject.spi.StaticInjectionRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
