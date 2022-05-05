@@ -16,7 +16,7 @@ public class UserEventPublisher {
     @Value("${ead.broker.exchange.userEvent}")
     private String exchangeUserEvent;
 
-    public void publishUserEvent(final UserEventDto userEventDto, final ActionType actionType){
+    public void publishUserEvent( UserEventDto userEventDto, ActionType actionType){
         userEventDto.setActionType(actionType.toString());
         this.rabbitTemplate.convertAndSend(this.exchangeUserEvent,"",userEventDto);
     }
