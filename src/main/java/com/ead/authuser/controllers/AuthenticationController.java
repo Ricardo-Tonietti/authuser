@@ -102,4 +102,38 @@ public class AuthenticationController {
         AuthenticationController.log.error("ERROR");
         return "Loggin Spring Boot....";
     }
+
+    @PostMapping("/signup/admin/usr")
+    public ResponseEntity<Object> registerUserAdmin (@RequestBody
+                                                @Validated(UserDto.UserView.RegistrationPost.class)
+                                                @JsonView (UserDto.UserView.RegistrationPost.class) final UserDto userDto){
+
+        AuthenticationController.log.debug("POST :registerUser userDto received {} ", userDto.toString());
+        if(userService.existsByUsername(userDto.getUsername())){
+            AuthenticationController.log.warn("POST :username {} is Already Taken ", userDto.getUsername());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR: username is Already Taken!");
+        }
+
+        if(userService.existsByEmail(userDto.getEmail())){
+            AuthenticationController.log.warn("POST :email {} is Already Taken ", userDto.getEmail());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("ERROR: Email is Already Taken!");
+        }
+        RoleModel roleModel = roleService.findByRoleName(RoleType.ROLE_ADMIN)
+                .orElseThrow( () -> new RuntimeException("ERROR: Role is Not Found."));
+
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+        var userModel = new UserModel();
+        BeanUtils.copyProperties(userDto, userModel);
+        userModel.setUserStatus(UserStatus.ACTIVE);
+        userModel.setUserType(UserType.ADMIM);
+        userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
+        userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
+        userModel.getRoles().add(roleModel);
+        userService.saveUser(userModel);
+
+        AuthenticationController.log.debug("POST :registerUser UserId saved {} ", userModel.getUserId());
+        AuthenticationController.log.info("User saved sucessfully UserId {} ", userModel.getUserId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(userModel);
+    }
 }
