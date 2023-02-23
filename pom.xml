@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.ead</groupId>
 	<artifactId>authuser</artifactId>
-	<version>5.0.0</version>
+	<version>5.0.1</version>
 	<name>authuser</name>
 	<description>Project DECODER - MS authuser</description>
 	<properties>
