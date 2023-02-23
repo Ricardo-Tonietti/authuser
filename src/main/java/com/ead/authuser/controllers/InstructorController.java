@@ -31,7 +31,7 @@ public class InstructorController {
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/subscription")
-    public ResponseEntity<Object> saveSubscriptionInstructor(@RequestBody @Valid final InstructorDto instructorDto){
+    public ResponseEntity<Object> saveSubscriptionInstructor(@RequestBody @Valid InstructorDto instructorDto){
         final Optional<UserModel> userModelOptional = this.userService.findById(instructorDto.getUserId());
         if(!userModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user Not Found!");
