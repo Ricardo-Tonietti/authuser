@@ -1,14 +1,5 @@
-
 spring:
+  profiles:
+    active: dev
   application:
     name: ead-authuser-service
-  config:
-    activate:
-      on-profile: dev
-    import: 'configserver:'
-  cloud:
-    config:
-      discovery:
-        serviceId: ead-config-server
-      username: configserver
-      password: 'ead123cs'

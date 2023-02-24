@@ -1,0 +1,91 @@
+HV000001: Hibernate Validator 6.2.4.Final
+Starting AuthuserApplication using Java 11.0.17 on silverfox with PID 18684 (/home/silverfox/Documents/trainings/decoder/authuser/target/classes started by silverfox in /home/silverfox/Documents/trainings/decoder/authuser)
+Running with Spring Boot v2.7.3, Spring v5.3.22
+The following 1 profile is active: "dev"
+Fetching config from server at : http://localhost:8888
+Located environment: name=ead-authuser-service, profiles=[dev], label=null, version=150bb5510adde7eaea7ae5af8240f382b72e2a83, state=null
+Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+Finished Spring Data repository scanning in 170 ms. Found 2 JPA repository interfaces.
+BeanFactory id=57424de6-0f79-3856-9bbe-d0dbba04879d
+Tomcat initialized with port(s): 8087 (http)
+Initializing ProtocolHandler ["http-nio-8087"]
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.65]
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 2575 ms
+HHH000204: Processing PersistenceUnitInfo [name: default]
+HHH000412: Hibernate ORM core version 5.6.10.Final
+HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+HikariPool-1 - Starting...
+HikariPool-1 - Start completed.
+HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+SQL Warning Code: 0, SQLState: 00000
+relation "tb_users_roles" does not exist, skipping
+SQL Warning Code: 0, SQLState: 00000
+relation "tb_users_roles" does not exist, skipping
+SQL Warning Code: 0, SQLState: 00000
+table "tb_roles" does not exist, skipping
+SQL Warning Code: 0, SQLState: 00000
+table "tb_users" does not exist, skipping
+SQL Warning Code: 0, SQLState: 00000
+table "tb_users_roles" does not exist, skipping
+HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Filter 'authenticationJwtFilter' configured for use
+14 mappings in 'requestMappingHandlerMapping'
+ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@ba65354, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@647dcc5e, org.springframework.security.web.context.SecurityContextPersistenceFilter@3eea7c4b, org.springframework.security.web.header.HeaderWriterFilter@5ae68d0e, org.springframework.security.web.authentication.logout.LogoutFilter@5127de08, com.ead.authuser.configs.security.AuthenticationJwtFilter@7f2c36de, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@410185ec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4127dcdb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5af850f1, org.springframework.security.web.session.SessionManagementFilter@6c1e2161, org.springframework.security.web.access.ExceptionTranslationFilter@7e199cec, org.springframework.security.web.access.intercept.AuthorizationFilter@3bc57af4]
+spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+Eureka HTTP Client uses RestTemplate.
+Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+Exposing 2 endpoint(s) beneath base path '/actuator'
+Setting initial instance status as: STARTING
+Initializing Eureka in region us-east-1
+Resolving eureka endpoints via configuration
+Disable delta property : false
+Single vip registry refresh property : null
+Force full registry fetch : false
+Application is null : false
+Registered Applications size is zero : true
+Application version is -1: true
+Getting all instance registry info from the eureka server
+HTTP GET http://serviceregistry:ead123sr@localhost:8761/eureka/apps/
+Accept=[application/json, application/*+json]
+Response 200 OK
+Reading to [org.springframework.cloud.netflix.eureka.http.EurekaApplications]
+The response status is 200
+Starting heartbeat executor: renew interval is: 30
+InstanceInfoReplicator onDemand update allowed rate per min is 4
+Discovery Client initialized at timestamp 1677250997460 with initial instances count: 1
+Registering application EAD-AUTHUSER-SERVICE with eureka with status UP
+Saw local status change event StatusChangeEvent [timestamp=1677250997471, current=UP, previous=STARTING]
+DiscoveryClient_EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087: registering service...
+Starting ProtocolHandler ["http-nio-8087"]
+HTTP POST http://serviceregistry:ead123sr@localhost:8761/eureka/apps/EAD-AUTHUSER-SERVICE
+Accept=[application/json, application/*+json]
+Writing [InstanceInfo [instanceId = 10.0.2.15:ead-authuser-service:8087, appName = EAD-AUTHUSER-SERVICE, hostName = localhost, status = UP, ipAddr = 10.0.2.15, port = 8087, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@72a80415] as "application/json"
+Tomcat started on port(s): 8087 (http) with context path '/ead-authuser'
+Updating port to 8087
+Response 204 NO_CONTENT
+DiscoveryClient_EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087 - registration status: 204
+Started AuthuserApplication in 10.188 seconds (JVM running for 11.573)
+Unregistering application EAD-AUTHUSER-SERVICE with eureka with status DOWN
+Saw local status change event StatusChangeEvent [timestamp=1677251020414, current=DOWN, previous=UP]
+DiscoveryClient_EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087: registering service...
+HTTP POST http://serviceregistry:ead123sr@localhost:8761/eureka/apps/EAD-AUTHUSER-SERVICE
+Accept=[application/json, application/*+json]
+Writing [InstanceInfo [instanceId = 10.0.2.15:ead-authuser-service:8087, appName = EAD-AUTHUSER-SERVICE, hostName = localhost, status = DOWN, ipAddr = 10.0.2.15, port = 8087, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@72a80415] as "application/json"
+Response 204 NO_CONTENT
+DiscoveryClient_EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087 - registration status: 204
+Closing JPA EntityManagerFactory for persistence unit 'default'
+HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+HikariPool-1 - Shutdown initiated...
+HikariPool-1 - Shutdown completed.
+Shutting down DiscoveryClient ...
+Unregistering ...
+HTTP DELETE http://serviceregistry:ead123sr@localhost:8761/eureka/apps/EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087
+Accept=[application/json, application/*+json]
+Response 200 OK
+DiscoveryClient_EAD-AUTHUSER-SERVICE/10.0.2.15:ead-authuser-service:8087 - deregister  status: 200
+Completed shut down of DiscoveryClient
