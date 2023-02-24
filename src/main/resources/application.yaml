@@ -3,6 +3,8 @@ spring:
   application:
     name: ead-authuser-service
   config:
+    activate:
+      on-profile: dev
     import: 'configserver:'
   cloud:
     config:
